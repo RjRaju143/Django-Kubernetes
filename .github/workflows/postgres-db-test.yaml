@@ -43,11 +43,7 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: ${{ matrix.python-version }}
-      - name: Install requirements
-        working-directory: ./web
-        run: |
-          pip install -r requirements.txt
-      - name: Run Tests
+      - name: Install requirements and Run Tests
         working-directory: ./web
         env:
           DEBUG: "0"
@@ -58,6 +54,8 @@ jobs:
           DB_DATABASE: ${{ env.POSTGRES_DB }}
           DB_PORT: ${{ env.POSTGRES_PORT }}
         run: |
+          ls -lah ../
           pwd
           ls -lah
+          pip install -r requirements.txt
           python manage.py test
