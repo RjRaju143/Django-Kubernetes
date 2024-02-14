@@ -24,7 +24,7 @@ jobs:
       - name: Build container image
         working-directory: ./web
         run : |
-          docker build -f Dockerfile
+          docker build .
           docker images
       #   run: |
       #     docker build -f Dockerfile \
