@@ -23,12 +23,15 @@ jobs:
         run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ env.DOCKER_USERNAME }}" --password-stdin
       - name: Build container image
         working-directory: ./web
-        run: |
-          docker build -f Dockerfile \
-            -t rjraju/django-k8s-web:latest \
-            -t rjraju/django-k8s-web:${GITHUB_SHA::7}-${GITHUB_RUN_ID::5} \
-            .
-      - name: Push image to Docker Hub
-        run: |
-          docker push rjraju/django-k8s-web:latest
-          docker push rjraju/django-k8s-web:${GITHUB_SHA::7}-${GITHUB_RUN_ID::5}
+        run : |
+          docker build -f Dockerfile
+          docker images
+      #   run: |
+      #     docker build -f Dockerfile \
+      #       -t rjraju/django-k8s-web:latest \
+      #       -t rjraju/django-k8s-web:${GITHUB_SHA::7}-${GITHUB_RUN_ID::5} \
+      #       .
+      # - name: Push image to Docker Hub
+      #   run: |
+      #     docker push rjraju/django-k8s-web:latest
+      #     docker push rjraju/django-k8s-web:${GITHUB_SHA::7}-${GITHUB_RUN_ID::5}
