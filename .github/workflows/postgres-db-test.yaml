@@ -48,6 +48,7 @@ jobs:
         run: |
           pip install -r requirements.txt
       - name: Run Tests
+        working-directory: ./web
         env:
           DEBUG: "0"
           DJANGO_SECRET_KEY: ${{ env.DJANGO_SECRET_KEY }}
