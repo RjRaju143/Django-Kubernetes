@@ -128,10 +128,10 @@ if DB_IS_AVAIL:
             "PORT": DB_PORT,
         }
     }
-    if not DB_IGNORE_SSL:
-         DATABASES["default"]["OPTIONS"] = {
-            "sslmode": "require"
-         }
+    # if not DB_IGNORE_SSL:
+    #      DATABASES["default"]["OPTIONS"] = {
+    #         "sslmode": "require"
+    #      }
 
 
 # Password validation
