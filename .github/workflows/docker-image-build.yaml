@@ -1,19 +1,21 @@
 name: Build Docker Container & Push to Docker Hub
+
 on:
-  # workflow_call:
-  # workflow_dispatch:
   push:
     branches: [main]
   pull_request:
     branches: [main]
+
 jobs:
   postgres-django-test:
-    uses: https://github.com/RjRaju143/Django-Kubernetes/.github/workflows/postgres-django-test.yaml@main
+    uses: RjRaju143/Django-Kubernetes/.github/workflows/postgres-django-test.yaml@main
+
   build:
     runs-on: ubuntu-latest
     needs: [postgres-django-test]
     env:
       DOCKER_USERNAME: rjraju
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
