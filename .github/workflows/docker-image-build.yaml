@@ -9,10 +9,11 @@ on:
     branches: [main]
 
 jobs:
-  test_django_job:
+  postgres-django-test:
     uses: RjRaju143/Django-Kubernetes/.github/workflows/postgres-django-test.yaml@main
   build:
     runs-on: ubuntu-latest
+    needs: [postgres-django-test]
     env:
       DOCKER_USERNAME: rjraju
     steps:
