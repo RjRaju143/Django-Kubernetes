@@ -14,13 +14,12 @@ spec:
     spec:
       containers:
         - name: iac-python
-          image: codingforentrepreneurs/iac-python:latest
+          image: rjraju/django-k8s-web:latest:latest
           env:
             - name: PORT
               value: "8181"
           ports:
             - containerPort: 8181
-
 
 ---
 
@@ -37,3 +36,4 @@ spec:
       targetPort: 8181
   selector:
     app: iac-python-deployment
+

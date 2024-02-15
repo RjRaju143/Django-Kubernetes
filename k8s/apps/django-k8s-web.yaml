@@ -16,18 +16,19 @@ spec:
     spec:
       containers:
       - name: django-k8s-web
-        image: registry.digitalocean.com/cfe-k8s/django-k8s-web:latest
+        image: rjraju/django-k8s-web:latest
         imagePullPolicy: Always
         envFrom:
+        # kubectl create secret generic django-k8s-web-prod-env --from-env-file=web/.env.prod
           - secretRef:
               name: django-k8s-web-prod-env
         env:
           - name: PORT
-            value: "8002"
+            value: "8000"
         ports:
-        - containerPort: 8002
+        - containerPort: 8000
       imagePullSecrets:
-        - name: cfe-k8s   
+        - name: rjraju
 
 
 ---
