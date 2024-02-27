@@ -35,7 +35,11 @@ pipeline {
         
         stage('Logs') {
             steps {
-                sh 'docker images'
+                sh 'docker push rjraju/django-k8s-web:latest'
+            }
+
+            steps {
+                echo 'Done...'
             }
         }
     }
