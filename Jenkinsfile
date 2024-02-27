@@ -7,17 +7,18 @@ pipeline {
     }
 
     stages {
-        stage('Debug') {
-            steps {
-                script {
-                    echo "GITHUB_SHA: ${env.GITHUB_SHA}"
-                    echo "BUILD_ID: ${env.BUILD_ID}"
-                }
-            }
-        }
+        // stage('Debug') {
+        //     steps {
+        //         script {
+        //             echo "GITHUB_SHA: ${env.GITHUB_SHA}"
+        //             echo "BUILD_ID: ${env.BUILD_ID}"
+        //         }
+        //     }
+        // }
         
         stage('Build and Push Image') {
             steps {
+                echo "BUILD_ID: ${env.BUILD_ID}"
                 dir('web') {
                     script {
                         def dockerTag = "${DOCKER_USERNAME}/django-k8s-web:latest"
