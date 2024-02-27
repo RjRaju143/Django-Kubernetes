@@ -5,6 +5,7 @@ pipeline {
         DOCKER_USERNAME = 'rjraju'
         DOCKER_PASSWORD = credentials('dockerhub_credentials')
     }
+
     stages {
         stage('Debug') {
             steps {
@@ -32,7 +33,12 @@ pipeline {
             }
         }
     }
+
+    stages {
+        stage('Logs') {
+            steps {
+                sh 'ls -lah;pwd'
+            }
+        }
+    }
 }
-
-
-
