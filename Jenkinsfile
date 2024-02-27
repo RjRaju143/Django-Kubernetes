@@ -24,12 +24,7 @@ pipeline {
 
         stage('Push Docker Image to Docker Hub') {
             steps {
-                script {
-                    def dockerTag = "${DOCKER_USERNAME}/django-k8s-web:latest"
-                    docker.withRegistry('https://registry.hub.docker.com', DOCKER_USERNAME, DOCKER_PASSWORD) {
-                        docker.image(dockerTag).push()
-                    }
-                }
+                sh 'docker push rjraju/django-k8s-web:latest'
             }
         }
     }
