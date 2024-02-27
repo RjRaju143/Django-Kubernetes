@@ -32,9 +32,7 @@ pipeline {
                 }
             }
         }
-    }
-
-    stages {
+        
         stage('Logs') {
             steps {
                 sh 'docker images'
