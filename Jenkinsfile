@@ -20,7 +20,7 @@ pipeline {
                 dir('web') {
                     script {
                         def dockerTag = "${DOCKER_USERNAME}/django-k8s-web:latest"
-                        // def dockerTagWithSHA = "${DOCKER_USERNAME}/django-k8s-web:${env.GITHUB_SHA.take(7)}-${env.BUILD_ID.take(5)}"
+                        def dockerTagWithSHA = "${DOCKER_USERNAME}/django-k8s-web:${env.GITHUB_SHA.take(7)}-${env.BUILD_ID.take(5)}"
 
                         docker.build(dockerTag, '-f Dockerfile .')
                         // docker.build(dockerTagWithSHA, '-f Dockerfile .')
@@ -31,7 +31,15 @@ pipeline {
                     }
                 }
             }
+
+            post {
+                success {
+                    echo 'Build successful. Running post-build commands...'
+                    sh 'ls -lah; pwd'
+                }
+            }
         }
+
     }
 }
 
