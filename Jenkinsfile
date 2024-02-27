@@ -32,10 +32,12 @@ pipeline {
                 }
             }
         }
-        
+    }
+
+    stages {
         stage('Logs') {
             steps {
-                sh 'ls -lah;pwd'
+                sh 'docker images'
             }
         }
     }
