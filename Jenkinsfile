@@ -24,13 +24,21 @@ pipeline {
 
                         docker.build(dockerTag, '-f Dockerfile .')
                         // docker.build(dockerTagWithSHA, '-f Dockerfile .')
-                        docker.withRegistry('https://index.docker.io/v1/', DOCKER_USERNAME, DOCKER_PASSWORD) {
-                            docker.push(dockerTag)
-                            // docker.push(dockerTagWithSHA)
-                        }
+                        // docker.withRegistry('https://index.docker.io/v1/', DOCKER_USERNAME, DOCKER_PASSWORD) {
+                        //     docker.push(dockerTag)
+                        //     docker.push(dockerTagWithSHA)
+                        // }
                     }
+                }
+            }
+            steps {
+                script {
+                    sh 'ls -lah;pwd'
                 }
             }
         }
     }
 }
+
+
+
