@@ -31,11 +31,6 @@ pipeline {
                     }
                 }
             }
-            steps {
-                script {
-                    sh 'ls -lah;pwd'
-                }
-            }
         }
     }
 }
