@@ -23,21 +23,14 @@ pipeline {
                         // def dockerTagWithSHA = "${DOCKER_USERNAME}/django-k8s-web:${env.GITHUB_SHA.take(7)}-${env.BUILD_ID.take(5)}"
                         docker.build(dockerTag, '-f Dockerfile .')
                         // docker.build(dockerTagWithSHA, '-f Dockerfile .')
-                        docker.withRegistry('https://index.docker.io/v1/', DOCKER_USERNAME, DOCKER_PASSWORD) {
-                            docker.push(dockerTag)
-                            // docker.push(dockerTagWithSHA)
-                        }
+                        // docker.withRegistry('https://index.docker.io/v1/', DOCKER_USERNAME, DOCKER_PASSWORD) {
+                        //     docker.push(dockerTag)
+                        //     docker.push(dockerTagWithSHA)
+                        // }
                     }
                 }
             }
-            post {
-                success {
-                    echo 'Build successful. Running post-build commands...'
-                    sh 'ls -lah; pwd'
-                }
-            }
         }
-
     }
 }
 
