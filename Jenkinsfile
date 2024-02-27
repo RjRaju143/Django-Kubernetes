@@ -24,7 +24,7 @@ pipeline {
 
                         docker.build(dockerTag, '-f Dockerfile .')
                         // docker.build(dockerTagWithSHA, '-f Dockerfile .')
-                        docker.withRegistry('https://index.docker.io/v1/', DOCKER_USERNAME, DOCKER_PASSWORD) {
+                        docker.withRegistry('https://index.docker.io/v1/', DOCKER_USERNAME, 'dckr_pat_pMBbjUXNCqQzQggKYpk7v6PRQjg') {
                             docker.push(dockerTag)
                             // docker.push(dockerTagWithSHA)
                         }
