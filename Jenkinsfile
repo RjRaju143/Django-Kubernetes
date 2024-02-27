@@ -32,11 +32,16 @@ pipeline {
             steps {
                 // Push both latest and Git commit ID tagged images
                 script {
-                    withCredentials([usernamePassword(credentialsId: 'dockerhub_credentials', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
-                        sh "docker login -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD}"
-                        sh "docker push ${DOCKER_USERNAME}/django-k8s-web:latest"
-                        sh "docker push ${DOCKER_USERNAME}/django-k8s-web:${GIT_COMMIT_ID}"
-                    }
+                    // Extract Docker credentials from the secret text
+                    def dockerCredentials = credentials('dockerhub_credentials')
+                    def dockerAuth = dockerCredentials.split(':')
+                    def dockerUsername = dockerAuth[0]
+                    def dockerPassword = dockerAuth[1]
+                    
+                    // Log in to Docker Hub and push the images
+                    sh "docker login -u ${dockerUsername} -p ${dockerPassword}"
+                    sh "docker push ${DOCKER_USERNAME}/django-k8s-web:latest"
+                    sh "docker push ${DOCKER_USERNAME}/django-k8s-web:${GIT_COMMIT_ID}"
                 }
             }
         }
