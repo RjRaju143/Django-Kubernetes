@@ -36,9 +36,6 @@ pipeline {
         stage('Logs') {
             steps {
                 sh 'docker push rjraju/django-k8s-web:latest'
-            }
-
-            steps {
                 echo 'Done...'
             }
         }
